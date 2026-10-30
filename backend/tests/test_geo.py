@@ -398,7 +398,8 @@ async def test_overpass_empty_elements_is_a_success(monkeypatch):
     )
     assert places == []
     assert ok is True
-    assert source == "overpass:overpass-api.de"
+    expected_host = httpx.URL(svc._overpass_endpoints()[0]).host
+    assert source == f"overpass:{expected_host}"
     assert cached is False
 
 
