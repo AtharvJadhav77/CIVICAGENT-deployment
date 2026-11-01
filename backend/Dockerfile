@@ -27,7 +27,6 @@ COPY pyproject.toml alembic.ini ./
 COPY app ./app
 COPY alembic ./alembic
 COPY main.py seed.py ./
-COPY scripts/bootstrap_super_admin.py ./scripts/bootstrap_super_admin.py
 
 RUN python -m pip install --upgrade pip && \
     python -m pip install --prefix=/deps .
@@ -57,7 +56,6 @@ COPY --from=builder /build/app ./app
 COPY --from=builder /build/alembic ./alembic
 COPY --from=builder /build/main.py ./main.py
 COPY --from=builder /build/seed.py ./seed.py
-COPY --from=builder /build/scripts/bootstrap_super_admin.py ./scripts/bootstrap_super_admin.py
 COPY --from=builder /build/alembic.ini ./alembic.ini
 COPY --from=builder /build/pyproject.toml ./pyproject.toml
 
